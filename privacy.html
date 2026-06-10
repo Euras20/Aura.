@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Protocole de Confidentialité | Aura. Conciergerie de Luxe</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+    .font-label-caps { font-family: 'Inter', sans-serif; text-transform: uppercase; }
+    .font-headline-sm { font-family: 'EB Garamond', serif; }
+    .font-headline-md { font-family: 'EB Garamond', serif; }
+    .font-display-lg { font-family: 'EB Garamond', serif; }
+    .font-body-md { font-family: 'Inter', sans-serif; }
+    .font-body-lg { font-family: 'Inter', sans-serif; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #fcf9f8; }
+    ::-webkit-scrollbar-thumb { background: #002019; }
+    .mobile-menu-overlay {
+        position: fixed; inset: 0; background: rgba(0, 32, 25, 0.95);
+        backdrop-filter: blur(20px); z-index: 60; display: flex;
+        flex-direction: column; align-items: center; justify-content: center;
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .mobile-menu-overlay.active { opacity: 1; pointer-events: all; }
+    .mobile-menu-overlay a {
+        color: #ffffff; font-family: 'EB Garamond', serif;
+        font-size: 2rem; font-weight: 500; margin: 1rem 0;
+        opacity: 0; transform: translateY(20px);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .mobile-menu-overlay.active a { opacity: 1; transform: translateY(0); }
+    .mobile-menu-overlay.active a:nth-child(1) { transition-delay: 0.1s; }
+    .mobile-menu-overlay.active a:nth-child(2) { transition-delay: 0.2s; }
+    .mobile-menu-overlay.active a:nth-child(3) { transition-delay: 0.3s; }
+    .mobile-menu-overlay.active a:nth-child(4) { transition-delay: 0.4s; }
+    .mobile-menu-overlay.active a:nth-child(5) { transition-delay: 0.5s; }
+    .mobile-menu-overlay.active a:nth-child(6) { transition-delay: 0.6s; }
+    .mobile-close-btn { position: absolute; top: 1.25rem; right: 1.25rem; color: #ffffff; cursor: pointer; }
+    .nav-inner { padding-left: 1rem; padding-right: 1rem; }
+    @media (min-width: 768px) { .nav-inner { padding-left: 2rem; padding-right: 2rem; } }
+    @media (min-width: 1280px) { .nav-inner { padding-left: 3rem; padding-right: 3rem; } }
+    .legal-content h3 { font-family: 'EB Garamond', serif; font-size: 1.5rem; font-weight: 500; color: #002019; margin-top: 3rem; margin-bottom: 1rem; }
+    .legal-content p { font-family: 'Inter', sans-serif; font-size: 1rem; line-height: 1.75; color: #414845; margin-bottom: 1.25rem; }
+    .legal-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .legal-content ul li { font-family: 'Inter', sans-serif; font-size: 1rem; line-height: 1.75; color: #414845; margin-bottom: 0.5rem; }
+</style>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "surface-container": "#f0eded", "surface-dim": "#dcd9d9",
+                    "on-tertiary-container": "#9a9890", "error": "#ba1a1a",
+                    "tertiary": "#1c1b16", "primary": "#002019",
+                    "inverse-primary": "#accec2", "on-primary-fixed": "#002019",
+                    "tertiary-container": "#31302a", "primary-fixed-dim": "#accec2",
+                    "error-container": "#ffdad6", "surface-container-high": "#eae7e7",
+                    "on-primary": "#ffffff", "tertiary-fixed": "#e6e2d9",
+                    "surface": "#fcf9f8", "primary-fixed": "#c8eade",
+                    "outline": "#717975", "surface-container-low": "#f6f3f2",
+                    "on-error-container": "#93000a", "tertiary-fixed-dim": "#cac6be",
+                    "on-surface-variant": "#414845", "on-primary-container": "#7e9e93",
+                    "surface-container-lowest": "#ffffff", "surface-tint": "#46655b",
+                    "inverse-on-surface": "#f3f0ef", "secondary-fixed-dim": "#e8c086",
+                    "on-error": "#ffffff", "inverse-surface": "#303030",
+                    "secondary": "#775928", "surface-container-highest": "#e5e2e1",
+                    "on-tertiary-fixed": "#1c1c16", "on-secondary-container": "#7a5c2b",
+                    "on-tertiary": "#ffffff", "background": "#fcf9f8",
+                    "on-surface": "#1b1c1c", "secondary-container": "#ffd79b",
+                    "on-secondary": "#ffffff", "secondary-fixed": "#ffdeae",
+                    "primary-container": "#16352d", "on-secondary-fixed": "#281800",
+                    "surface-variant": "#e5e2e1", "outline-variant": "#c1c8c4",
+                    "surface-bright": "#fcf9f8", "on-background": "#1b1c1c"
+                },
+                borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+                spacing: { "margin-desktop": "64px", "stack-lg": "80px", "margin-mobile": "20px", "container-max": "1280px", "gutter": "32px", "unit": "8px", "stack-sm": "16px", "stack-md": "32px" },
+                fontFamily: { "body-lg": ["Inter"], "button": ["Inter"], "headline-md": ["EB Garamond"], "headline-sm": ["EB Garamond"], "body-md": ["Inter"], "display-lg-mobile": ["EB Garamond"], "display-lg": ["EB Garamond"], "label-caps": ["Inter"] },
+                fontSize: {
+                    "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}],
+                    "button": ["14px", {lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "500"}],
+                    "headline-md": ["32px", {lineHeight: "40px", fontWeight: "500"}],
+                    "headline-sm": ["24px", {lineHeight: "32px", fontWeight: "500"}],
+                    "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}],
+                    "display-lg-mobile": ["40px", {lineHeight: "48px", letterSpacing: "-0.01em", fontWeight: "500"}],
+                    "display-lg": ["64px", {lineHeight: "72px", letterSpacing: "-0.02em", fontWeight: "500"}],
+                    "label-caps": ["12px", {lineHeight: "16px", letterSpacing: "0.1em", fontWeight: "600"}]
+                }
+            },
+        },
+    }
+</script>
+<base target="_blank">
+</head>
+<body class="bg-background text-on-surface selection:bg-primary-fixed-dim selection:text-primary">
+
+<div class="mobile-menu-overlay" id="mobile-menu">
+    <span class="material-symbols-outlined mobile-close-btn" id="mobile-close" style="font-size: 2rem;">close</span>
+    <a href="index.html" onclick="closeMobileMenu()" data-fr="Accueil" data-en="Home">Accueil</a>
+    <a href="about.html" onclick="closeMobileMenu()" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</a>
+    <a href="services.html" onclick="closeMobileMenu()" data-fr="Services" data-en="Services">Services</a>
+    <a href="contact.html" onclick="closeMobileMenu()" data-fr="Contact" data-en="Contact">Contact</a>
+    <a href="index.html#contact" onclick="closeMobileMenu()" data-fr="Demander" data-en="Inquire">Demander</a>
+    <div style="margin-top: 2rem; opacity: 0.5;">
+        <p style="color: #ffffff; font-family: 'Inter', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em;">Aura. Conciergerie</p>
+    </div>
+</div>
+
+<nav class="fixed top-0 w-full z-50 bg-surface/95 backdrop-blur-xl border-b border-secondary/30">
+<div class="nav-inner flex justify-between items-center py-3 max-w-container-max mx-auto">
+<a href="index.html" class="font-headline-sm text-headline-sm tracking-widest text-primary shrink-0">Aura.</a>
+<div class="hidden md:flex gap-6 lg:gap-gutter items-center absolute left-1/2 -translate-x-1/2">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-500" href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-500" href="about.html" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-500" href="services.html" data-fr="Services" data-en="Services">Services</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-500" href="contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+</div>
+<div class="flex items-center gap-2 md:gap-3 shrink-0">
+<button class="hidden md:block px-4 lg:px-6 py-2 bg-primary text-on-primary font-label-caps text-label-caps scale-102 transition-transform duration-700 ease-in-out" data-fr="Demander" data-en="Inquire">Demander</button>
+<button id="lang-toggle" class="hidden md:block font-label-caps text-label-caps text-secondary border border-secondary/30 px-2 lg:px-3 py-1 hover:bg-secondary hover:text-white transition-all duration-300">EN</button>
+<button id="lang-toggle-mobile" class="md:hidden font-label-caps text-label-caps text-secondary border border-secondary/30 px-2 py-1 text-xs hover:bg-secondary hover:text-white transition-all duration-300">EN</button>
+<button id="mobile-menu-toggle" class="md:hidden flex items-center justify-center w-9 h-9 text-primary ml-1">
+<span class="material-symbols-outlined" style="font-size: 1.5rem;">menu</span>
+</button>
+</div>
+</div>
+</nav>
+
+<main class="pt-24 pb-stack-lg">
+<section class="px-6 md:px-margin-desktop max-w-container-max mx-auto mb-stack-lg">
+<div class="text-center">
+<span class="font-label-caps text-label-caps text-secondary mb-4 block tracking-[0.2em]" data-fr="Protocoles" data-en="Protocols">Protocoles</span>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-stack-sm" data-fr="Protocole de Confidentialité" data-en="Privacy Protocol">Protocole de Confidentialité</h1>
+<div class="h-px w-24 bg-secondary/30 mx-auto mb-stack-md"></div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto" data-fr="Votre confiance est notre fondement. Ce document expose les principes qui régissent la collecte, l'utilisation et la protection de vos données personnelles." data-en="Your trust is our foundation. This document outlines the principles governing the collection, use, and protection of your personal data.">
+    Votre confiance est notre fondement. Ce document expose les principes qui régissent la collecte, l'utilisation et la protection de vos données personnelles.
+</p>
+</div>
+</section>
+
+<section class="px-6 md:px-margin-desktop max-w-3xl mx-auto legal-content">
+<h3 data-fr="1. Engagement Fondamental" data-en="1. Foundational Commitment">1. Engagement Fondamental</h3>
+<p data-fr="Aura. Luxury Concierge s'engage à protéger la vie privée de ses clients avec la même rigueur que celle appliquée aux protocoles de sécurité des résidences les plus exclusives. Chaque donnée personnelle est traitée comme une information sensible, soumise aux standards les plus élevés de l'industrie de la conciergerie de luxe." data-en="Aura. Luxury Concierge is committed to protecting the privacy of its clients with the same rigour applied to the security protocols of the most exclusive residences. Every piece of personal data is treated as sensitive information, subject to the highest standards of the luxury concierge industry.">
+    Aura. Luxury Concierge s'engage à protéger la vie privée de ses clients avec la même rigueur que celle appliquée aux protocoles de sécurité des résidences les plus exclusives. Chaque donnée personnelle est traitée comme une information sensible, soumise aux standards les plus élevés de l'industrie de la conciergerie de luxe.
+</p>
+
+<h3 data-fr="2. Données Collectées" data-en="2. Data Collected">2. Données Collectées</h3>
+<p data-fr="Dans le cadre de nos services, nous collectons uniquement les informations strictement nécessaires à l'exécution de votre demande :" data-en="In the course of our services, we collect only the information strictly necessary to fulfil your request:">
+    Dans le cadre de nos services, nous collectons uniquement les informations strictement nécessaires à l'exécution de votre demande :
+</p>
+<ul>
+    <li data-fr="Identité complète et coordonnées de contact" data-en="Full identity and contact details">Identité complète et coordonnées de contact</li>
+    <li data-fr="Informations relatives à votre projet au Ghana (études, tourisme, affaires)" data-en="Information relating to your project in Ghana (studies, tourism, business)">Informations relatives à votre projet au Ghana (études, tourisme, affaires)</li>
+    <li data-fr="Préférences d'hébergement et de services" data-en="Accommodation and service preferences">Préférences d'hébergement et de services</li>
+    <li data-fr="Documents administratifs nécessaires aux démarches (passeport, diplômes, attestations)" data-en="Administrative documents required for procedures (passport, diplomas, certificates)">Documents administratifs nécessaires aux démarches (passeport, diplômes, attestations)</li>
+    <li data-fr="Historique des communications et demandes" data-en="History of communications and requests">Historique des communications et demandes</li>
+</ul>
+
+<h3 data-fr="3. Finalité du Traitement" data-en="3. Purpose of Processing">3. Finalité du Traitement</h3>
+<p data-fr="Vos données sont utilisées exclusivement dans le cadre suivant :" data-en="Your data is used exclusively within the following scope:">
+    Vos données sont utilisées exclusivement dans le cadre suivant :
+</p>
+<ul>
+    <li data-fr="Préparation et exécution des services conciergerie sous contrat" data-en="Preparation and execution of concierge services under contract">Préparation et exécution des services conciergerie sous contrat</li>
+    <li data-fr="Coordination avec nos partenaires institutionnels et privés au Ghana" data-en="Coordination with our institutional and private partners in Ghana">Coordination avec nos partenaires institutionnels et privés au Ghana</li>
+    <li data-fr="Personnalisation de votre expérience et anticipation de vos besoins" data-en="Personalisation of your experience and anticipation of your needs">Personnalisation de votre expérience et anticipation de vos besoins</li>
+    <li data-fr="Communication directe relative à votre dossier" data-en="Direct communication relating to your file">Communication directe relative à votre dossier</li>
+</ul>
+
+<h3 data-fr="4. Conservation et Sécurité" data-en="4. Retention and Security">4. Conservation et Sécurité</h3>
+<p data-fr="Les données sont conservées pendant la durée strictement nécessaire à l'exécution des services et aux obligations légales applicables, sans jamais excéder cinq (5) ans après la clôture du dossier. Toutes les informations sont stockées sur des serveurs sécurisés, chiffrés et localisés dans des juridictions respectueuses des standards de protection des données." data-en="Data is retained for the period strictly necessary for the execution of services and applicable legal obligations, never exceeding five (5) years after the file is closed. All information is stored on secure, encrypted servers located in jurisdictions that respect data protection standards.">
+    Les données sont conservées pendant la durée strictement nécessaire à l'exécution des services et aux obligations légales applicables, sans jamais excéder cinq (5) ans après la clôture du dossier. Toutes les informations sont stockées sur des serveurs sécurisés, chiffrés et localisés dans des juridictions respectueuses des standards de protection des données.
+</p>
+
+<h3 data-fr="5. Absence de Cession" data-en="5. No Transfer">5. Absence de Cession</h3>
+<p data-fr="Aura. ne cède, ne vend, ne loue et ne partage vos données personnelles avec des tiers à des fins commerciales ou marketing. Les seules transmissions autorisées concernent nos partenaires opérationnels strictement nécessaires à la réalisation de votre projet, et ce, sous couvert d'accords de confidentialité signés." data-en="Aura. does not transfer, sell, lease, or share your personal data with third parties for commercial or marketing purposes. The only authorised transmissions concern our operational partners strictly necessary for the completion of your project, and only under signed confidentiality agreements.">
+    Aura. ne cède, ne vend, ne loue et ne partage vos données personnelles avec des tiers à des fins commerciales ou marketing. Les seules transmissions autorisées concernent nos partenaires opérationnels strictement nécessaires à la réalisation de votre projet, et ce, sous couvert d'accords de confidentialité signés.
+</p>
+
+<h3 data-fr="6. Vos Droits" data-en="6. Your Rights">6. Vos Droits</h3>
+<p data-fr="Conformément aux réglementations en vigueur, vous disposez des droits suivants :" data-en="In accordance with applicable regulations, you have the following rights:">
+    Conformément aux réglementations en vigueur, vous disposez des droits suivants :
+</p>
+<ul>
+    <li data-fr="Droit d'accès à vos données personnelles" data-en="Right of access to your personal data">Droit d'accès à vos données personnelles</li>
+    <li data-fr="Droit de rectification des informations inexactes" data-en="Right to rectification of inaccurate information">Droit de rectification des informations inexactes</li>
+    <li data-fr="Droit à l'effacement (droit à l'oubli)" data-en="Right to erasure (right to be forgotten)">Droit à l'effacement (droit à l'oubli)</li>
+    <li data-fr="Droit à la portabilité de vos données" data-en="Right to data portability">Droit à la portabilité de vos données</li>
+    <li data-fr="Droit d'opposition au traitement" data-en="Right to object to processing">Droit d'opposition au traitement</li>
+</ul>
+
+<h3 data-fr="7. Contact Délégué à la Protection des Données" data-en="7. Data Protection Officer Contact">7. Contact Délégué à la Protection des Données</h3>
+<p data-fr="Pour toute question relative à la protection de vos données, vous pouvez contacter notre Délégué à la Protection des Données à l'adresse : privacy@aura-concierge.com. Les demandes sont traitées dans un délai maximum de 30 jours." data-en="For any questions relating to the protection of your data, you may contact our Data Protection Officer at: privacy@aura-concierge.com. Requests are processed within a maximum of 30 days.">
+    Pour toute question relative à la protection de vos données, vous pouvez contacter notre Délégué à la Protection des Données à l'adresse : privacy@aura-concierge.com. Les demandes sont traitées dans un délai maximum de 30 jours.
+</p>
+</section>
+</main>
+
+<footer class="bg-primary border-t border-secondary/20">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter px-6 md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="flex flex-col gap-stack-sm">
+<span class="font-headline-md text-headline-md text-secondary-fixed">Aura.</span>
+<p class="font-body-md text-body-md text-on-primary-container max-w-xs" data-fr="Votre partenaire de confiance pour étudier, voyager, faire des affaires et vivre au Ghana — avec élégance et sérénité." data-en="Your trusted partner for studying, travelling, doing business and living in Ghana — with elegance and peace of mind.">
+    Votre partenaire de confiance pour étudier, voyager, faire des affaires et vivre au Ghana — avec élégance et sérénité.
+</p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-secondary-fixed-dim" data-fr="Le Collectif" data-en="The Collective">Le Collectif</h4>
+<ul class="flex flex-col gap-2">
+<li><a class="font-body-md text-body-md text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="services.html" data-fr="La Collection" data-en="The Collection">La Collection</a></li>
+<li><a class="font-body-md text-body-md text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="#" data-fr="Adhésion Privée" data-en="Private Membership">Adhésion Privée</a></li>
+<li><a class="font-body-md text-body-md text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="#" data-fr="Résidence Ghana" data-en="Ghana Residency">Résidence Ghana</a></li>
+<li><a class="font-body-md text-body-md text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="#" data-fr="Affaires Bénin" data-en="Benin Affairs">Affaires Bénin</a></li>
+</ul>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-secondary-fixed-dim" data-fr="Protocoles" data-en="Protocols">Protocoles</h4>
+<ul class="flex flex-col gap-2">
+<li><a class="font-body-md text-body-md text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="privacy.html" data-fr="Protocole de Confidentialité" data-en="Privacy Protocol">Protocole de Confidentialité</a></li>
+<li><a class="font-body-md text-body-md text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="discretion.html" data-fr="Accord de Discrétion" data-en="Client Discretion Agreement">Accord de Discrétion</a></li>
+<li><a class="font-body-md text-body-md text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="terms.html" data-fr="Conditions de Service" data-en="Terms of Service">Conditions de Service</a></li>
+</ul>
+<div class="mt-4 flex gap-4">
+<span class="material-symbols-outlined text-secondary-fixed">fingerprint</span>
+<span class="material-symbols-outlined text-secondary-fixed">security</span>
+</div>
+</div>
+</div>
+<div class="px-6 md:px-margin-desktop py-stack-sm border-t border-white/5 max-w-container-max mx-auto text-center md:text-left">
+<p class="font-body-md text-body-md text-on-primary-container/60">
+    © 2024 Aura. Luxury Concierge. <span data-fr="Défini par la Discrétion." data-en="Defined by Discretion.">Défini par la Discrétion.</span>
+</p>
+</div>
+</footer>
+
+<script>
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileClose = document.getElementById('mobile-close');
+    function openMobileMenu() { mobileMenu.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeMobileMenu() { mobileMenu.classList.remove('active'); document.body.style.overflow = ''; }
+    mobileMenuToggle.addEventListener('click', openMobileMenu);
+    mobileClose.addEventListener('click', closeMobileMenu);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobileMenu(); });
+    let currentLang = 'fr';
+    function toggleLanguage() {
+        currentLang = currentLang === 'fr' ? 'en' : 'fr';
+        document.documentElement.lang = currentLang;
+        document.querySelectorAll('[data-fr][data-en]').forEach(el => {
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                el.placeholder = el.getAttribute('data-' + currentLang);
+            } else if (el.tagName === 'H3' || el.tagName === 'P' || el.tagName === 'LI' || el.tagName === 'H1' || el.tagName === 'SPAN' || el.tagName === 'A') {
+                el.textContent = el.getAttribute('data-' + currentLang);
+            }
+        });
+        const btnText = currentLang === 'fr' ? 'EN' : 'FR';
+        const desktopToggle = document.getElementById('lang-toggle');
+        const mobileToggle = document.getElementById('lang-toggle-mobile');
+        if (desktopToggle) desktopToggle.textContent = btnText;
+        if (mobileToggle) mobileToggle.textContent = btnText;
+    }
+    document.getElementById('lang-toggle').addEventListener('click', toggleLanguage);
+    document.getElementById('lang-toggle-mobile').addEventListener('click', toggleLanguage);
+</script>
+</body>
+</html>

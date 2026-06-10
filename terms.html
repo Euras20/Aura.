@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Conditions de Service | Aura. Conciergerie de Luxe</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+    .font-label-caps { font-family: 'Inter', sans-serif; text-transform: uppercase; }
+    .font-headline-sm { font-family: 'EB Garamond', serif; }
+    .font-headline-md { font-family: 'EB Garamond', serif; }
+    .font-display-lg { font-family: 'EB Garamond', serif; }
+    .font-body-md { font-family: 'Inter', sans-serif; }
+    .font-body-lg { font-family: 'Inter', sans-serif; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #fcf9f8; }
+    ::-webkit-scrollbar-thumb { background: #002019; }
+    .mobile-menu-overlay {
+        position: fixed; inset: 0; background: rgba(0, 32, 25, 0.95);
+        backdrop-filter: blur(20px); z-index: 60; display: flex;
+        flex-direction: column; align-items: center; justify-content: center;
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .mobile-menu-overlay.active { opacity: 1; pointer-events: all; }
+    .mobile-menu-overlay a {
+        color: #ffffff; font-family: 'EB Garamond', serif;
+        font-size: 2rem; font-weight: 500; margin: 1rem 0;
+        opacity: 0; transform: translateY(20px);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .mobile-menu-overlay.active a { opacity: 1; transform: translateY(0); }
+    .mobile-menu-overlay.active a:nth-child(1) { transition-delay: 0.1s; }
+    .mobile-menu-overlay.active a:nth-child(2) { transition-delay: 0.2s; }
+    .mobile-menu-overlay.active a:nth-child(3) { transition-delay: 0.3s; }
+    .mobile-menu-overlay.active a:nth-child(4) { transition-delay: 0.4s; }
+    .mobile-menu-overlay.active a:nth-child(5) { transition-delay: 0.5s; }
+    .mobile-menu-overlay.active a:nth-child(6) { transition-delay: 0.6s; }
+    .mobile-close-btn { position: absolute; top: 1.25rem; right: 1.25rem; color: #ffffff; cursor: pointer; }
+    .nav-inner { padding-left: 1rem; padding-right: 1rem; }
+    @media (min-width: 768px) { .nav-inner { padding-left: 2rem; padding-right: 2rem; } }
+    @media (min-width: 1280px) { .nav-inner { padding-left: 3rem; padding-right: 3rem; } }
+    .legal-content h3 { font-family: 'EB Garamond', serif; font-size: 1.5rem; font-weight: 500; color: #002019; margin-top: 3rem; margin-bottom: 1rem; }
+    .legal-content p { font-family: 'Inter', sans-serif; font-size: 1rem; line-height: 1.75; color: #414845; margin-bottom: 1.25rem; }
+    .legal-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+    .legal-content ul li { font-family: 'Inter', sans-serif; font-size: 1rem; line-height: 1.75; color: #414845; margin-bottom: 0.5rem; }
+</style>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "surface-container": "#f0eded", "surface-dim": "#dcd9d9",
+                    "on-tertiary-container": "#9a9890", "error": "#ba1a1a",
+                    "tertiary": "#1c1b16", "primary": "#002019",
+                    "inverse-primary": "#accec2", "on-primary-fixed": "#002019",
+                    "tertiary-container": "#31302a", "primary-fixed-dim": "#accec2",
+                    "error-container": "#ffdad6", "surface-container-high": "#eae7e7",
+                    "on-primary": "#ffffff", "tertiary-fixed": "#e6e2d9",
+                    "surface": "#fcf9f8", "primary-fixed": "#c8eade",
+                    "outline": "#717975", "surface-container-low": "#f6f3f2",
+                    "on-error-container": "#93000a", "tertiary-fixed-dim": "#cac6be",
+                    "on-surface-variant": "#414845", "on-primary-container": "#7e9e93",
+                    "surface-container-lowest": "#ffffff", "surface-tint": "#46655b",
+                    "inverse-on-surface": "#f3f0ef", "secondary-fixed-dim": "#e8c086",
+                    "on-error": "#ffffff", "inverse-surface": "#303030",
+                    "secondary": "#775928", "surface-container-highest": "#e5e2e1",
+                    "on-tertiary-fixed": "#1c1c16", "on-secondary-container": "#7a5c2b",
+                    "on-tertiary": "#ffffff", "background": "#fcf9f8",
+                    "on-surface": "#1b1c1c", "secondary-container": "#ffd79b",
+                    "on-secondary": "#ffffff", "secondary-fixed": "#ffdeae",
+                    "primary-container": "#16352d", "on-secondary-fixed": "#281800",
+                    "surface-variant": "#e5e2e1", "outline-variant": "#c1c8c4",
+                    "surface-bright": "#fcf9f8", "on-background": "#1b1c1c"
+                },
+                borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+                spacing: { "margin-desktop": "64px", "stack-lg": "80px", "margin-mobile": "20px", "container-max": "1280px", "gutter": "32px", "unit": "8px", "stack-sm": "16px", "stack-md": "32px" },
+                fontFamily: { "body-lg": ["Inter"], "button": ["Inter"], "headline-md": ["EB Garamond"], "headline-sm": ["EB Garamond"], "body-md": ["Inter"], "display-lg-mobile": ["EB Garamond"], "display-lg": ["EB Garamond"], "label-caps": ["Inter"] },
+                fontSize: {
+                    "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}],
+                    "button": ["14px", {lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "500"}],
+                    "headline-md": ["32px", {lineHeight: "40px", fontWeight: "500"}],
+                    "headline-sm": ["24px", {lineHeight: "32px", fontWeight: "500"}],
+                    "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}],
+                    "display-lg-mobile": ["40px", {lineHeight: "48px", letterSpacing: "-0.01em", fontWeight: "500"}],
+                    "display-lg": ["64px", {lineHeight: "72px", letterSpacing: "-0.02em", fontWeight: "500"}],
+                    "label-caps": ["12px", {lineHeight: "16px", letterSpacing: "0.1em", fontWeight: "600"}]
+                }
+            },
+        },
+    }
+</script>
+<base target="_blank">
+</head>
+<body class="bg-background text-on-surface selection:bg-primary-fixed-dim selection:text-primary">
+
+<div class="mobile-menu-overlay" id="mobile-menu">
+    <span class="material-symbols-outlined mobile-close-btn" id="mobile-close" style="font-size: 2rem;">close</span>
+    <a href="index.html" onclick="closeMobileMenu()" data-fr="Accueil" data-en="Home">Accueil</a>
+    <a href="about.html" onclick="closeMobileMenu()" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</a>
+    <a href="services.html" onclick="closeMobileMenu()" data-fr="Services" data-en="Services">Services</a>
+    <a href="contact.html" onclick="closeMobileMenu()" data-fr="Contact" data-en="Contact">Contact</a>
+    <a href="index.html#contact" onclick="closeMobileMenu()" data-fr="Demander" data-en="Inquire">Demander</a>
+    <div style="margin-top: 2rem; opacity: 0.5;">
+        <p style="color: #ffffff; font-family: 'Inter', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em;">Aura. Conciergerie</p>
+    </div>
+</div>
+
+<nav class="fixed top-0 w-full z-50 bg-surface/95 backdrop-blur-xl border-b border-secondary/30">
+<div class="nav-inner flex justify-between items-center py-3 max-w-container-max mx-auto">
+<a href="index.html" class="font-headline-sm text-headline-sm tracking-widest text-primary shrink-0">Aura.</a>
+<div class="hidden md:flex gap-6 lg:gap-gutter items-center absolute left-1/2 -translate-x-1/2">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-500" href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-500" href="about.html" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-500" href="services.html" data-fr="Services" data-en="Services">Services</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-500" href="contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+</div>
+<div class="flex items-center gap-2 md:gap-3 shrink-0">
+<button class="hidden md:block px-4 lg:px-6 py-2 bg-primary text-on-primary font-label-caps text-label-caps scale-102 transition-transform duration-700 ease-in-out" data-fr="Demander" data-en="Inquire">Demander</button>
+<button id="lang-toggle" class="hidden md:block font-label-caps text-label-caps text-secondary border border-secondary/30 px-2 lg:px-3 py-1 hover:bg-secondary hover:text-white transition-all duration-300">EN</button>
+<button id="lang-toggle-mobile" class="md:hidden font-label-caps text-label-caps text-secondary border border-secondary/30 px-2 py-1 text-xs hover:bg-secondary hover:text-white transition-all duration-300">EN</button>
+<button id="mobile-menu-toggle" class="md:hidden flex items-center justify-center w-9 h-9 text-primary ml-1">
+<span class="material-symbols-outlined" style="font-size: 1.5rem;">menu</span>
+</button>
+</div>
+</div>
+</nav>
+
+<main class="pt-24 pb-stack-lg">
+<section class="px-6 md:px-margin-desktop max-w-container-max mx-auto mb-stack-lg">
+<div class="text-center">
+<span class="font-label-caps text-label-caps text-secondary mb-4 block tracking-[0.2em]" data-fr="Protocoles" data-en="Protocols">Protocoles</span>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-stack-sm" data-fr="Conditions de Service" data-en="Terms of Service">Conditions de Service</h1>
+<div class="h-px w-24 bg-secondary/30 mx-auto mb-stack-md"></div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto" data-fr="Ces conditions définissent les termes et modalités de nos prestations de conciergerie de luxe. En sollicitant nos services, vous acceptez pleinement et sans réserve les dispositions ci-après." data-en="These terms define the conditions and modalities of our luxury concierge services. By requesting our services, you fully and unreservedly accept the provisions set out below.">
+    Ces conditions définissent les termes et modalités de nos prestations de conciergerie de luxe. En sollicitant nos services, vous acceptez pleinement et sans réserve les dispositions ci-après.
+</p>
+</div>
+</section>
+
+<section class="px-6 md:px-margin-desktop max-w-3xl mx-auto legal-content">
+<h3 data-fr="1. Objet et Champ d'Application" data-en="1. Purpose and Scope">1. Objet et Champ d'Application</h3>
+<p data-fr="Les présentes Conditions de Service régissent la relation contractuelle entre Aura. Luxury Concierge et ses clients. Elles s'appliquent à l'ensemble des services proposés : éducation, tourisme, affaires et services sur mesure au Ghana et dans la région ouest-africaine." data-en="These Terms of Service govern the contractual relationship between Aura. Luxury Concierge and its clients. They apply to all services offered: education, tourism, business, and bespoke services in Ghana and the West African region.">
+    Les présentes Conditions de Service régissent la relation contractuelle entre Aura. Luxury Concierge et ses clients. Elles s'appliquent à l'ensemble des services proposés : éducation, tourisme, affaires et services sur mesure au Ghana et dans la région ouest-africaine.
+</p>
+
+<h3 data-fr="2. Processus de Commande" data-en="2. Ordering Process">2. Processus de Commande</h3>
+<p data-fr="Toute demande de service fait l'objet d'une étude préalable par nos conseillers. Suite à l'envoi de votre demande via notre formulaire ou par email, un conseiller Aura. vous contacte sous 2 heures ouvrées pour :" data-en="Every service request is subject to a preliminary study by our advisors. Following the submission of your request via our form or by email, an Aura. advisor contacts you within 2 business hours to:">
+    Toute demande de service fait l'objet d'une étude préalable par nos conseillers. Suite à l'envoi de votre demande via notre formulaire ou par email, un conseiller Aura. vous contacte sous 2 heures ouvrées pour :
+</p>
+<ul>
+    <li data-fr="Comprendre précisément vos besoins et contraintes" data-en="Precisely understand your needs and constraints">Comprendre précisément vos besoins et contraintes</li>
+    <li data-fr="Vous proposer une offre personnalisée détaillée" data-en="Propose a detailed personalised offer">Vous proposer une offre personnalisée détaillée</li>
+    <li data-fr="Établir un devis incluant honoraires, frais de dossier et débours estimés" data-en="Establish a quote including fees, administrative costs, and estimated disbursements">Établir un devis incluant honoraires, frais de dossier et débours estimés</li>
+    <li data-fr="Fixer un calendrier d'exécution réaliste" data-en="Set a realistic execution schedule">Fixer un calendrier d'exécution réaliste</li>
+</ul>
+
+<h3 data-fr="3. Tarification et Paiement" data-en="3. Pricing and Payment">3. Tarification et Paiement</h3>
+<p data-fr="Nos honoraires sont calculés en fonction de la complexité, de l'urgence et du niveau d'exclusivité de la demande. Les modalités de paiement sont les suivantes :" data-en="Our fees are calculated based on the complexity, urgency, and level of exclusivity of the request. Payment terms are as follows:">
+    Nos honoraires sont calculés en fonction de la complexité, de l'urgence et du niveau d'exclusivité de la demande. Les modalités de paiement sont les suivantes :
+</p>
+<ul>
+    <li data-fr="Un acompte de 50% est exigé à la signature du bon de commande" data-en="A 50% deposit is required upon signing the order form">Un acompte de 50% est exigé à la signature du bon de commande</li>
+    <li data-fr="Le solde est dû à la livraison effective des services ou selon l'échéancier convenu" data-en="The balance is due upon effective delivery of services or according to the agreed schedule">Le solde est dû à la livraison effective des services ou selon l'échéancier convenu</li>
+    <li data-fr="Les débours (frais d'inscription, réservation d'hébergement, etc.) sont facturés au réel sur justificatifs" data-en="Disbursements (enrolment fees, accommodation booking, etc.) are billed at cost with supporting documents">Les débours (frais d'inscription, réservation d'hébergement, etc.) sont facturés au réel sur justificatifs</li>
+    <li data-fr="Les paiements s'effectuent par virement bancaire sécurisé ou par les moyens convenus contractuellement" data-en="Payments are made by secure bank transfer or by means agreed contractually">Les paiements s'effectuent par virement bancaire sécurisé ou par les moyens convenus contractuellement</li>
+</ul>
+
+<h3 data-fr="4. Obligations d'Aura." data-en="4. Aura.'s Obligations">4. Obligations d'Aura.</h3>
+<p data-fr="Aura. s'engage à :" data-en="Aura. undertakes to:">
+    Aura. s'engage à :
+</p>
+<ul>
+    <li data-fr="Exécuter les services avec diligence, professionnalisme et dans le respect des standards de conciergerie de luxe" data-en="Execute services with diligence, professionalism, and in accordance with luxury concierge standards">Exécuter les services avec diligence, professionnalisme et dans le respect des standards de conciergerie de luxe</li>
+    <li data-fr="Tenir le Client informé de l'avancement de son dossier de manière régulière et transparente" data-en="Keep the Client regularly and transparently informed of the progress of their file">Tenir le Client informé de l'avancement de son dossier de manière régulière et transparente</li>
+    <li data-fr="Respecter les délais convenus, sous réserve de circonstances indépendantes de notre volonté" data-en="Respect agreed deadlines, subject to circumstances beyond our control">Respecter les délais convenus, sous réserve de circonstances indépendantes de notre volonté</li>
+    <li data-fr="Garantir la confidentialité absolue de toutes les informations communiquées par le Client" data-en="Guarantee the absolute confidentiality of all information communicated by the Client">Garantir la confidentialité absolue de toutes les informations communiquées par le Client</li>
+</ul>
+
+<h3 data-fr="5. Obligations du Client" data-en="5. Client's Obligations">5. Obligations du Client</h3>
+<p data-fr="Le Client s'engage à :" data-en="The Client undertakes to:">
+    Le Client s'engage à :
+</p>
+<ul>
+    <li data-fr="Fournir des informations exactes, complètes et à jour concernant sa demande" data-en="Provide accurate, complete, and up-to-date information regarding their request">Fournir des informations exactes, complètes et à jour concernant sa demande</li>
+    <li data-fr="Transmettre les documents nécessaires dans les délais impartis" data-en="Submit required documents within the specified deadlines">Transmettre les documents nécessaires dans les délais impartis</li>
+    <li data-fr="Régler les honoraires et débours selon les modalités convenues" data-en="Settle fees and disbursements according to agreed terms">Régler les honoraires et débours selon les modalités convenues</li>
+    <li data-fr="Informer Aura. sans délai de tout changement susceptible d'affecter l'exécution des services" data-en="Inform Aura. without delay of any change likely to affect the execution of services">Informer Aura. sans délai de tout changement susceptible d'affecter l'exécution des services</li>
+</ul>
+
+<h3 data-fr="6. Responsabilité" data-en="6. Liability">6. Responsabilité</h3>
+<p data-fr="Aura. est responsable des dommages directs et prévisibles résultant d'une faute dans l'exécution des services. Sa responsabilité ne saurait être engagée en cas de force majeure, d'erreur du Client dans la fourniture des informations, ou de décisions prises par des autorités ghanéennes indépendantes de notre volonté. Le montant de l'indemnisation est limité au montant des honoraires perçus pour le service concerné." data-en="Aura. is liable for direct and foreseeable damages resulting from a fault in the execution of services. Its liability cannot be incurred in the event of force majeure, error by the Client in providing information, or decisions taken by Ghanaian authorities independent of our will. The amount of compensation is limited to the amount of fees received for the service in question.">
+    Aura. est responsable des dommages directs et prévisibles résultant d'une faute dans l'exécution des services. Sa responsabilité ne saurait être engagée en cas de force majeure, d'erreur du Client dans la fourniture des informations, ou de décisions prises par des autorités ghanéennes indépendantes de notre volonté. Le montant de l'indemnisation est limité au montant des honoraires perçus pour le service concerné.
+</p>
+
+<h3 data-fr="7. Résiliation" data-en="7. Termination">7. Résiliation</h3>
+<p data-fr="Le Client peut résilier le contrat à tout moment par écrit. En cas de résiliation avant le début effectif des services, l'acompte est remboursé déduction faite des frais de dossier engagés. En cas de résiliation après le début des services, les honoraires correspondant aux prestations déjà réalisées restent dus. Aura. se réserve le droit de résilier immédiatement en cas de manquement grave du Client aux présentes conditions." data-en="The Client may terminate the contract at any time in writing. In the event of termination before the effective start of services, the deposit is refunded less administrative costs incurred. In the event of termination after the start of services, fees corresponding to services already rendered remain due. Aura. reserves the right to terminate immediately in the event of a serious breach by the Client of these terms.">
+    Le Client peut résilier le contrat à tout moment par écrit. En cas de résiliation avant le début effectif des services, l'acompte est remboursé déduction faite des frais de dossier engagés. En cas de résiliation après le début des services, les honoraires correspondant aux prestations déjà réalisées restent dus. Aura. se réserve le droit de résilier immédiatement en cas de manquement grave du Client aux présentes conditions.
+</p>
+
+<h3 data-fr="8. Droit Applicable et Juridiction" data-en="8. Governing Law and Jurisdiction">8. Droit Applicable et Juridiction</h3>
+<p data-fr="Les présentes Conditions de Service sont régies par le droit ghanéen. Tout litige relatif à leur interprétation ou à leur exécution sera soumis à la juridiction compétente d'Accra, Ghana, sous réserve des compétences impératives applicables." data-en="These Terms of Service are governed by Ghanaian law. Any dispute relating to their interpretation or execution shall be submitted to the competent jurisdiction of Accra, Ghana, subject to applicable mandatory jurisdictions.">
+    Les présentes Conditions de Service sont régies par le droit ghanéen. Tout litige relatif à leur interprétation ou à leur exécution sera soumis à la juridiction compétente d'Accra, Ghana, sous réserve des compétences impératives applicables.
+</p>
+
+<h3 data-fr="9. Modifications" data-en="9. Modifications">9. Modifications</h3>
+<p data-fr="Aura. se réserve le droit de modifier les présentes Conditions de Service à tout moment. Les modifications entrent en vigueur dès leur publication sur le site. Le Client est invité à les consulter régulièrement." data-en="Aura. reserves the right to modify these Terms of Service at any time. Modifications take effect upon publication on the website. The Client is invited to consult them regularly.">
+    Aura. se réserve le droit de modifier les présentes Conditions de Service à tout moment. Les modifications entrent en vigueur dès leur publication sur le site. Le Client est invité à les consulter régulièrement.
+</p>
+</section>
+</main>
+
+<footer class="bg-primary border-t border-secondary/20">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter px-6 md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="flex flex-col gap-stack-sm">
+<span class="font-headline-md text-headline-md text-secondary-fixed">Aura.</span>
+<p class="font-body-md text-body-md text-on-primary-container max-w-xs" data-fr="Votre partenaire de confiance pour étudier, voyager, faire des affaires et vivre au Ghana — avec élégance et sérénité." data-en="Your trusted partner for studying, travelling, doing business and living in Ghana — with elegance and peace of mind.">
+    Votre partenaire de confiance pour étudier, voyager, faire des affaires et vivre au Ghana — avec élégance et sérénité.
+</p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-secondary-fixed-dim" data-fr="Le Collectif" data-en="The Collective">Le Collectif</h4>
+<ul class="flex flex-col gap-2">
+<li><a class="font-body-md text-body-md text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="services.html" data-fr="La Collection" data-en="The Collection">La Collection</a></li>
+<li><a class="font-body-md text-body-md text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="#" data-fr="Adhésion Privée" data-en="Private Membership">Adhésion Privée</a></li>
+<li><a class="font-body-md text-body-md text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="#" data-fr="Résidence Ghana" data-en="Ghana Residency">Résidence Ghana</a></li>
+<li><a class="font-body-md text-body-md text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="#" data-fr="Affaires Bénin" data-en="Benin Affairs">Affaires Bénin</a></li>
+</ul>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-secondary-fixed-dim" data-fr="Protocoles" data-en="Protocols">Protocoles</h4>
+<ul class="flex flex-col gap-2">
+<li><a class="font-body-md text-body-md text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="privacy.html" data-fr="Protocole de Confidentialité" data-en="Privacy Protocol">Protocole de Confidentialité</a></li>
+<li><a class="font-body-md text-body-md text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="discretion.html" data-fr="Accord de Discrétion" data-en="Client Discretion Agreement">Accord de Discrétion</a></li>
+<li><a class="font-body-md text-body-md text-on-primary-container hover:text-secondary-fixed-dim transition-colors" href="terms.html" data-fr="Conditions de Service" data-en="Terms of Service">Conditions de Service</a></li>
+</ul>
+<div class="mt-4 flex gap-4">
+<span class="material-symbols-outlined text-secondary-fixed">fingerprint</span>
+<span class="material-symbols-outlined text-secondary-fixed">security</span>
+</div>
+</div>
+</div>
+<div class="px-6 md:px-margin-desktop py-stack-sm border-t border-white/5 max-w-container-max mx-auto text-center md:text-left">
+<p class="font-body-md text-body-md text-on-primary-container/60">
+    © 2024 Aura. Luxury Concierge. <span data-fr="Défini par la Discrétion." data-en="Defined by Discretion.">Défini par la Discrétion.</span>
+</p>
+</div>
+</footer>
+
+<script>
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileClose = document.getElementById('mobile-close');
+    function openMobileMenu() { mobileMenu.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeMobileMenu() { mobileMenu.classList.remove('active'); document.body.style.overflow = ''; }
+    mobileMenuToggle.addEventListener('click', openMobileMenu);
+    mobileClose.addEventListener('click', closeMobileMenu);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobileMenu(); });
+    let currentLang = 'fr';
+    function toggleLanguage() {
+        currentLang = currentLang === 'fr' ? 'en' : 'fr';
+        document.documentElement.lang = currentLang;
+        document.querySelectorAll('[data-fr][data-en]').forEach(el => {
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                el.placeholder = el.getAttribute('data-' + currentLang);
+            } else if (el.tagName === 'H3' || el.tagName === 'P' || el.tagName === 'LI' || el.tagName === 'H1' || el.tagName === 'SPAN' || el.tagName === 'A') {
+                el.textContent = el.getAttribute('data-' + currentLang);
+            }
+        });
+        const btnText = currentLang === 'fr' ? 'EN' : 'FR';
+        const desktopToggle = document.getElementById('lang-toggle');
+        const mobileToggle = document.getElementById('lang-toggle-mobile');
+        if (desktopToggle) desktopToggle.textContent = btnText;
+        if (mobileToggle) mobileToggle.textContent = btnText;
+    }
+    document.getElementById('lang-toggle').addEventListener('click', toggleLanguage);
+    document.getElementById('lang-toggle-mobile').addEventListener('click', toggleLanguage);
+</script>
+</body>
+</html>
